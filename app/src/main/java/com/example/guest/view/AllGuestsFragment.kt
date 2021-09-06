@@ -1,4 +1,4 @@
-package com.example.guest.ui.absent
+package com.example.guest.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.guest.databinding.FragmentAbsentBinding
+import com.example.guest.databinding.FragmentAllGuestsBinding
+import com.example.guest.viewmodel.AllGuestsViewModel
 
-class AbsentFragment : Fragment() {
+class AllGuestsFragment : Fragment() {
 
-    private lateinit var absentViewModel: AbsentViewModel
-    private var _binding: FragmentAbsentBinding? = null
+    private lateinit var allGuestsViewModel: AllGuestsViewModel
+    private var _binding: FragmentAllGuestsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,14 +25,14 @@ class AbsentFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        absentViewModel =
-                ViewModelProvider(this).get(AbsentViewModel::class.java)
+        allGuestsViewModel =
+                ViewModelProvider(this).get(AllGuestsViewModel::class.java)
 
-        _binding = FragmentAbsentBinding.inflate(inflater, container, false)
+        _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textAbsent
-        absentViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textAllGuests
+        allGuestsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

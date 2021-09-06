@@ -1,4 +1,4 @@
-package com.example.guest.ui.absent
+package com.example.guest.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
