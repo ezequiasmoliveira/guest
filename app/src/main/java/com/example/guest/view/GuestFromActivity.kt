@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.guest.R
 import com.example.guest.viewmodel.GuestFromViewModel
@@ -12,13 +16,33 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mViewModel: GuestFromViewModel
 
+    private lateinit var mButton: Button
+    private lateinit var mEditName: EditText
+    private lateinit var mRadioButtonPresence: RadioButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_from)
 
         mViewModel = ViewModelProvider(this).get(GuestFromViewModel::class.java)
 
+        mButton = findViewById(R.id.button_save)
+        mEditName = findViewById(R.id.edit_name)
+        mRadioButtonPresence = findViewById(R.id.radio_presence)
+
         setListeners()
+        observers()
+    }
+
+
+    override fun onClick(v: View) {
+        val id = v.id
+        if (id == R.id.button_save) {
+            val name = mEditName.text.toString()
+            val presence = mRadioButtonPresence.isChecked
+
+            mViewModel.save(name, presence)
+        }
     }
 
     private fun setListeners(){
@@ -26,11 +50,14 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
         button.setOnClickListener(this)
     }
 
-    override fun onClick(v: View) {
-        val id = v.id
-        if (id == R.id.button_save) {
-
-        }
+    private fun observers() {
+        mViewModel.saveGuest.observe(this, Observer {
+            if (it) {
+                Toast.makeText(applicationContext, "Cadastro criado com sucesso", Toast.LENGTH_SHORT)
+            } else {
+                Toast.makeText(applicationContext, "Erro ao criar o cadastro", Toast.LENGTH_SHORT)
+            }
+        })
     }
 
 
