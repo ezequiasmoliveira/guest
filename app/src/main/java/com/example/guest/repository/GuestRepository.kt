@@ -1,8 +1,29 @@
 package com.example.guest.repository
 
+import android.content.Context
 import com.example.guest.model.GuestModel
 
-class GuestRepository {
+class GuestRepository private constructor(context: Context) {
+    private var mDataBaseHelper: DataBaseHelper = DataBaseHelper(context)
+
+    companion object {
+        private lateinit var repository: GuestRepository
+
+        fun getInstance(context: Context): GuestRepository {
+            if (!::repository.isInitialized) {
+                repository = GuestRepository(context)
+            }
+            return repository
+        }
+    }
+
+    fun save(guest: GuestModel){
+        mDataBaseHelper.writableDatabase
+    }
+
+    fun update(guest: GuestModel){}
+
+    fun delete(guest: GuestModel){}
 
     fun getAll(): List<GuestModel> {
         val guests: MutableList<GuestModel> = ArrayList()
@@ -19,9 +40,5 @@ class GuestRepository {
         return guests
     }
 
-    fun save(guest: GuestModel){}
 
-    fun update(guest: GuestModel){}
-
-    fun delete(guest: GuestModel){}
 }
