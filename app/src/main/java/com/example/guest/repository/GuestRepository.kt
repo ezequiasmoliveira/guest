@@ -1,7 +1,9 @@
 package com.example.guest.repository
 
+import android.content.ContentValues
 import android.content.Context
 import com.example.guest.model.GuestModel
+import com.example.guest.repository.util.DataBaseConstants
 
 class GuestRepository private constructor(context: Context) {
     private var mDataBaseHelper: DataBaseHelper = DataBaseHelper(context)
@@ -18,7 +20,18 @@ class GuestRepository private constructor(context: Context) {
     }
 
     fun save(guest: GuestModel){
-        mDataBaseHelper.writableDatabase
+        try {
+            val db = mDataBaseHelper.writableDatabase
+
+            val contentValues = ContentValues()
+            contentValues.put(DataBaseConstants.GUEST.COLUMNS.NAME, guest.name)
+            contentValues.put(DataBaseConstants.GUEST.COLUMNS.PRESENCE, guest.presence)
+
+            db.insert(DataBaseConstants.GUEST.TABLE_NAME, null, contentValues)
+            true
+        } catch (ex: Exception) {
+            false
+        }
     }
 
     fun update(guest: GuestModel){}
