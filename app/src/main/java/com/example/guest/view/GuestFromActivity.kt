@@ -57,6 +57,7 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 Toast.makeText(applicationContext, "Erro ao criar o cadastro", Toast.LENGTH_SHORT)
             }
+            finish()
         })
     }
 
