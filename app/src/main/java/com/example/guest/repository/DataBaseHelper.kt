@@ -18,9 +18,9 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "guests.db"
 
-        private const val CREATE_TABLE_GUEST = ("create table" + DataBaseConstants.GUEST.TABLE_NAME
-                + " (" + DataBaseConstants.GUEST.COLUMNS.ID + " integer primary key autoincrement, "
-                + DataBaseConstants.GUEST.COLUMNS.NAME + " text, "
-                + DataBaseConstants.GUEST.COLUMNS.PRESENCE + " integer);")
+        private const val CREATE_TABLE_GUEST = ("CREATE TABLE " + DataBaseConstants.GUEST.TABLE_NAME
+                + " (" + DataBaseConstants.GUEST.COLUMNS.ID + " INTEGER primary key autoincrement, "
+                + DataBaseConstants.GUEST.COLUMNS.NAME + " TEXT, "
+                + DataBaseConstants.GUEST.COLUMNS.PRESENCE + " INTEGER);")
     }
 }
