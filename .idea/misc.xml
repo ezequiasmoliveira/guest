@@ -7,7 +7,10 @@
         <entry key="..\:/mobile/android/app/src/main/res/layout/content_main.xml" value="0.18059777102330293" />
         <entry key="..\:/mobile/android/app/src/main/res/menu/activity_main_drawer.xml" value="0.37135416666666665" />
         <entry key="..\:/mobile/android/guest/app/src/main/res/layout/activity_guest_from.xml" value="0.20989583333333334" />
+        <entry key="..\:/mobile/android/guest/app/src/main/res/layout/content_main.xml" value="0.2558876811594203" />
         <entry key="..\:/mobile/android/guest/app/src/main/res/layout/fragment_absent.xml" value="0.17882472137791286" />
+        <entry key="..\:/mobile/android/guest/app/src/main/res/layout/fragment_all_guests.xml" value="0.2554347826086957" />
+        <entry key="..\:/mobile/android/guest/app/src/main/res/layout/row_guest.xml" value="0.2558876811594203" />
         <entry key="..\:/mobile/android/guest/app/src/main/res/menu/activity_main_drawer.xml" value="0.36770833333333336" />
       </map>
     </option>

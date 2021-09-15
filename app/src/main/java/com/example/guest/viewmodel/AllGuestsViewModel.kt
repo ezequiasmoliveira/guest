@@ -1,13 +1,20 @@
 package com.example.guest.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.guest.model.GuestModel
+import com.example.guest.repository.GuestRepository
 
-class AllGuestsViewModel : ViewModel() {
+class AllGuestsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is All guests Fragment"
+    private val mGuestRepository = GuestRepository.getInstance(application.applicationContext)
+
+    private val mGuests = MutableLiveData<List<GuestModel>>()
+    val guests: LiveData<List<GuestModel>> = mGuests
+
+    fun load(){
+        mGuests.value = mGuestRepository.getAll()
     }
-    val text: LiveData<String> = _text
 }
