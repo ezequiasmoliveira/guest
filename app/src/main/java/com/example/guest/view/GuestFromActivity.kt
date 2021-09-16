@@ -17,6 +17,8 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mViewModel: GuestFromViewModel
 
+    private var mGuestId: Int = 0
+
     private lateinit var mButton: Button
     private lateinit var mEditName: EditText
     private lateinit var mRadioButtonPresence: RadioButton
@@ -33,6 +35,8 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
         mRadioButtonPresence = findViewById(R.id.radio_presence)
         mRadioButtonAbsent = findViewById(R.id.radio_absent)
 
+        mRadioButtonPresence.isChecked = true
+
         setListeners()
         observers()
         loadData()
@@ -45,15 +49,15 @@ class GuestFromActivity : AppCompatActivity(), View.OnClickListener {
             val name = mEditName.text.toString()
             val presence = mRadioButtonPresence.isChecked
 
-            mViewModel.save(name, presence)
+            mViewModel.save(mGuestId, name, presence)
         }
     }
 
     private fun loadData() {
         val bundle = intent.extras
         if (bundle != null) {
-            val id = bundle.getInt(GuestConstants.GUEST_ID)
-            mViewModel.load(id)
+            mGuestId = bundle.getInt(GuestConstants.GUEST_ID)
+            mViewModel.load(mGuestId)
         }
     }
 
