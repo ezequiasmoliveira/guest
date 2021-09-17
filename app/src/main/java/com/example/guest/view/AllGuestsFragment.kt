@@ -15,11 +15,11 @@ import com.example.guest.constants.GuestConstants
 import com.example.guest.databinding.FragmentAllGuestsBinding
 import com.example.guest.view.adapter.GuestAdapter
 import com.example.guest.view.listener.GuestListener
-import com.example.guest.viewmodel.AllGuestsViewModel
+import com.example.guest.viewmodel.GuestsViewModel
 
 class AllGuestsFragment : Fragment() {
 
-    private lateinit var mViewModel: AllGuestsViewModel
+    private lateinit var mViewModel: GuestsViewModel
     private var _binding: FragmentAllGuestsBinding? = null
     private val mAdapter: GuestAdapter = GuestAdapter()
     private lateinit var mListener: GuestListener
@@ -33,7 +33,7 @@ class AllGuestsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        mViewModel = ViewModelProvider(this).get(AllGuestsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
 
         _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -55,7 +55,7 @@ class AllGuestsFragment : Fragment() {
 
             override fun onDelete(id: Int) {
                 mViewModel.delete(id)
-                mViewModel.load()
+                mViewModel.load(GuestConstants.FILTER.EMPTY)
             }
         }
         mAdapter.attachListener(mListener)
@@ -67,7 +67,7 @@ class AllGuestsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mViewModel.load()
+        mViewModel.load(GuestConstants.FILTER.EMPTY)
     }
 
     private fun observer(){
